@@ -1,0 +1,524 @@
+/* ========================
+/* 通用区块间距 */
+/*========================*/
+
+.card-section {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.strategy-topbar {
+  margin-bottom: 20px;
+}
+
+/*========================*/
+/* KPI 卡片区域 */
+/*========================*/
+
+.strategy-kpi-card {
+  background: var(--card-bg-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.strategy-kpi-card .label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.strategy-kpi-card .value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.strategy-kpi-card .value.kpi-positive {
+  color: #d32f2f !important;
+}
+.strategy-kpi-card .value.kpi-negative {
+  color: #2e7d32 !important;
+}
+
+html.dark .strategy-kpi-card {
+  background: var(--card-bg);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .strategy-kpi-card .value.kpi-positive {
+  color: #ff6b6b !important;
+}
+html.dark .strategy-kpi-card .value.kpi-negative {
+  color: #81c784 !important;
+}
+
+/*========================*/
+/* 图表区域 */
+/*========================*/
+
+.strategy-performance.card-section {
+  margin-top: 2rem;
+}
+
+.strategy-chart-card {
+  background: var(--card-bg-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+html.dark .strategy-chart-card {
+  background: var(--card-bg);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.strategy-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.strategy-chart-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.strategy-chart-range-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.strategy-chart-range-tabs .range-tab {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.strategy-chart-range-tabs .range-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.strategy-chart-range-tabs .range-tab.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.strategy-chart-container {
+  width: 100%;
+  height: 420px;
+}
+
+.strategy-chart-note {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/*========================*/
+/* 图表配色（ECharts 变量） */
+/*========================*/
+
+html {
+  --chart-line-strategy: #4a90e2;
+  --chart-line-benchmark: #6ac46a;
+  --chart-text-primary: #333333;
+  --chart-text-secondary: #666666;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-text: #333333;
+  --chart-split-line: #eeeeee;
+}
+
+html.dark {
+  --chart-line-strategy: #4fc3f7;
+  --chart-line-benchmark: #81c784;
+  --chart-text-primary: #f0f0f0;
+  --chart-text-secondary: #b0b0b0;
+  --chart-tooltip-bg: #2a2a2a;
+  --chart-tooltip-text: #f0f0f0;
+  --chart-split-line: rgba(255, 255, 255, 0.06);
+}
+
+/*========================*/
+/* 收益日历卡片 */
+/*========================*/
+
+.strategy-performance .row {
+  align-items: stretch;
+}
+.strategy-chart-card,
+.strategy-calendar-card {
+  height: 100%;
+}
+
+
+/* ========================= */
+/* 日历卡片整体样式 */
+/* ========================= */
+.strategy-calendar-card {
+  background: var(--card-bg-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+}
+
+html.dark .strategy-calendar-card {
+  background: var(--card-bg);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Tabs */
+.strategy-calendar-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-tab {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.calendar-tab.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Header + 月份切换 */
+.strategy-calendar-header {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.calendar-month-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.month-btn {
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.month-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Grid 容器 */
+.strategy-calendar-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 表头：周一到周五 */
+.calendar-week-header {
+  display: none;
+  margin-bottom: 4px;
+}
+
+.strategy-calendar-card[data-mode="daily"] .calendar-week-header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.calendar-header-cell {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .calendar-header-cell {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+/* 每一行的布局：根据模式自动切换 */
+.calendar-week {
+  display: grid;
+  gap: 6px;
+}
+
+.strategy-calendar-card[data-mode="daily"] .calendar-week {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.strategy-calendar-card[data-mode="monthly"] .calendar-week {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.strategy-calendar-card[data-mode="yearly"] .calendar-week {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 单元格样式 */
+.calendar-cell {
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.2;
+  min-height: 60px;
+}
+
+.calendar-cell.empty {
+  background-color: transparent;
+  border: none;
+}
+
+.calendar-cell.neutral {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: var(--text-muted);
+}
+
+html.dark .calendar-cell.neutral {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.calendar-cell.positive {
+  background-color: rgba(211, 47, 47, 0.08);
+  color: #d32f2f;
+}
+
+html.dark .calendar-cell.positive {
+  background-color: rgba(244, 143, 177, 0.16);
+  color: #ef9a9a;
+}
+
+.calendar-cell.negative {
+  background-color: rgba(46, 125, 50, 0.08);
+  color: #2e7d32;
+}
+
+html.dark .calendar-cell.negative {
+  background-color: rgba(129, 199, 132, 0.16);
+  color: #81c784;
+}
+
+.calendar-cell .date {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.calendar-cell .percent {
+  font-weight: 500;
+}
+
+.calendar-cell .amount {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+/* 汇总行 */
+.strategy-calendar-summary {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 0.5rem;
+}
+
+
+/* ========================= */
+/* 持仓统计卡片整体样式 */
+/* ========================= */
+/* 框体 */
+.strategy-holding-card {
+  background: var(--card-bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.strategy-holding-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 桌面表格 */
+.strategy-holding-table {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 6px;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.table-row.table-header {
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.03);
+  color: var(--text-secondary);
+}
+
+.cell.numeric {
+  text-align: right;
+}
+
+.profit-rate.positive {
+  color: #d32f2f;
+}
+.profit-rate.negative {
+  color: #2e7d32;
+}
+
+/* 移动卡片 */
+.strategy-holding-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.holding-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--card-bg-secondary);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.holding-card .top-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.holding-card .profit-rate {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.holding-card .profit-rate.positive {
+  color: #d32f2f;
+}
+.holding-card .profit-rate.negative {
+  color: #2e7d32;
+}
+
+.holding-card .detail {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+/* 响应式切换 */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
+}
+
+
+
+
+
+/*========================*/
+/* 响应式 */
+/*========================*/
+
+@media (max-width: 768px) {
+  .strategy-kpi-card {
+    padding: 12px;
+  }
+
+  .strategy-kpi-card .label {
+    font-size: 0.75rem;
+  }
+
+  .strategy-kpi-card .value {
+    font-size: 1rem;
+  }
+
+  .strategy-chart-card {
+    padding: 16px;
+  }
+
+  .strategy-chart-container {
+    height: 300px;
+  }
+
+  .strategy-calendar-card {
+    padding: 16px;
+    min-height: 0;
+  }
+
+  .calendar-cell {
+    font-size: 0.7rem;
+    min-height: 50px;
+  }
+
+  .calendar-cell .amount {
+    font-size: 0.65rem;
+  }
+
+  .strategy-calendar-header,
+  .strategy-calendar-summary {
+    font-size: 0.8rem;
+  }
+}
+
+ */

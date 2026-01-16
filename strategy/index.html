@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en,zh-CN,default">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Prism AI">
+
+
+    <link rel="stylesheet" href="/css/strategy.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/strategy/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Prism AI">
+<meta property="og:type" content="website">
+<meta property="og:title" content="strategy">
+<meta property="og:url" content="http://example.com/strategy/index.html">
+<meta property="og:site_name" content="Prism AI webpage">
+<meta property="og:description" content="Prism AI">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-12-16T08:10:40.000Z">
+<meta property="article:modified_time" content="2025-12-16T09:02:29.653Z">
+<meta property="article:author" content="Bigbai">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            strategy | Prism AI
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap-grid.min.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":["en","zh-CN","default"]};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1200px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Prism AI"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Refracting Insights, Empowering Decisions","subtitle":{"text":["Illuminating Finance Through Technology"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Strategy":{"path":"/strategy","icon":"fa-solid fa-chart-line"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"path":"/about","icon":"fa-regular fa-user"},"GitHub":{"path":"https://github.com/thebigbai/thebigbai.github.io","icon":"fa-solid fa-code-branch"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/12/05 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+
+
+
+
+
+
+
+<body>
+  <!-- TEST STRATEGY LAYOUT -->
+
+<main class="page-container" id="swup">
+  <div class="main-content-container flex flex-col justify-between min-h-dvh">
+    <div class="main-content-header">
+      <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/redefine-avatar.svg" class="w-full h-full rounded-xs">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                Prism AI
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/strategy"
+                                        >
+                                    <i class="fa-solid fa-chart-line fa-fw"></i>
+                                    STRATEGY
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/thebigbai/thebigbai.github.io"
+                                        >
+                                    <i class="fa-solid fa-code-branch fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/strategy"
+                        >
+                            <span>
+                                STRATEGY
+                            </span>
+                            
+                                <i class="fa-solid fa-chart-line fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/thebigbai/thebigbai.github.io"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-solid fa-code-branch fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="main-content-body transition-fade-up">
+      <div class="main-content">
+        <!-- ========================= -->
+<!-- KPI 区域 -->
+<!-- ========================= -->
+<section class="strategy-topbar card-section">
+  <div class="container">
+    <div class="row g-3">
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">初始资金</div>
+          <div class="value">
+            50017
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">总收益率</div>
+          <div class="value kpi-positive">
+            44.38%
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">年化收益率</div>
+          <div class="value kpi-positive">
+            44.76%
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">胜率</div>
+          <div class="value kpi-negative">
+            -78.96%
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">最大回撤</div>
+          <div class="value kpi-positive">
+            33.1%
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="strategy-kpi-card">
+          <div class="label">夏普率</div>
+          <div class="value kpi-positive">
+            19.02
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= -->
+<!-- 图表 + 日历 -->
+<!-- ========================= -->
+
+
+
+<section class="strategy-performance card-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- 左侧图表：桌面 8 列，平板/手机 12 列 -->
+      <div class="col-12 col-lg-8">
+        <div class="strategy-chart-card">
+
+          <div class="strategy-chart-header d-flex justify-content-between align-items-center">
+            <div class="strategy-chart-title">收益走势</div>
+
+            <div class="strategy-chart-range-tabs" id="strategy-range-tabs">
+              <button class="range-tab active" data-range="ytd">今年以来</button>
+              <button class="range-tab" data-range="1y">近1年</button>
+              <button class="range-tab" data-range="3y">近3年</button>
+              <button class="range-tab" data-range="all">创建以来</button>
+            </div>
+          </div>
+
+          <div id="strategy-return-chart" class="strategy-chart-container"></div>
+
+          <div class="strategy-chart-note">
+            注：策略的收益数据为理论回测结果，未考虑实际交易中的佣金、手续费和滑点等成本因素。
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- 右侧日历：桌面 4 列，平板/手机 12 列 -->
+      <div class="col-12 col-lg-4">
+        <!-- ========================= -->
+        <div class="strategy-calendar-card">
+
+          <!-- Tabs -->
+          <div class="strategy-calendar-tabs">
+            <button class="calendar-tab active" data-mode="daily">日收益</button>
+            <button class="calendar-tab" data-mode="monthly">月收益</button>
+            <button class="calendar-tab" data-mode="yearly">年收益</button>
+          </div>
+
+
+          <!-- Header + 月份切换 -->
+          <div class="strategy-calendar-header d-flex justify-content-between align-items-center">
+
+            <div class="calendar-title" id="calendar-title">
+              收益日历 · <span id="calendar-year">2025</span>年
+              <span id="calendar-month">12</span>月
+            </div>
+
+
+            <div class="calendar-month-switch">
+              <button class="month-btn" id="prev-month">‹</button>
+              <button class="month-btn" id="next-month">›</button>
+            </div>
+          </div>
+          <div class="calendar-week-header" id="calendar-week-header">
+            <div class="calendar-header-cell">周一</div>
+            <div class="calendar-header-cell">周二</div>
+            <div class="calendar-header-cell">周三</div>
+            <div class="calendar-header-cell">周四</div>
+            <div class="calendar-header-cell">周五</div>
+          </div>
+
+
+
+          <!-- Calendar Grid（JS 会填充这里） -->
+          <div id="calendar-grid" class="strategy-calendar-grid"></div>
+
+          <!-- Summary -->
+          <div id="calendar-summary" class="strategy-calendar-summary">
+            当月收益：-1.93%（-1.74万）
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- 累计持仓统计卡片 -->
+<!-- ========================= -->
+<section class="strategy-holding-summary card-section">
+  <div class="container">
+    <div class="strategy-holding-card">
+      <div class="strategy-holding-title">累计持仓统计</div>
+
+      
+
+
+      
+
+
+        <!-- 桌面表格 -->
+        <div class="strategy-holding-table desktop-only">
+  <div class="table-row table-header">
+    <div class="cell code">代码</div>
+    <div class="cell name">名称</div>
+    <div class="cell profit-amount numeric">总收益金额</div>
+    <div class="cell profit-rate numeric">总收益率</div>
+    <div class="cell trades numeric">交易次数</div>
+    <div class="cell winrate numeric">胜率</div>
+    <div class="cell days numeric">总持有天数</div>
+  </div>
+
+  
+    <div class="table-row">
+      <div class="cell code">159915</div>
+      <div class="cell name">创业板100ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥429.00
+      </div>
+
+      <div class="cell profit-rate numeric positive">
+        +279.17%
+      </div>
+
+      <div class="cell trades numeric">52.58</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric positive">
+    29.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">69</div>
+
+    </div>
+  
+    <div class="table-row">
+      <div class="cell code">513030</div>
+      <div class="cell name">德国ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥130.00
+      </div>
+
+      <div class="cell profit-rate numeric positive">
+        +797.94%
+      </div>
+
+      <div class="cell trades numeric">16.02</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric positive">
+    22.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">68</div>
+
+    </div>
+  
+    <div class="table-row">
+      <div class="cell code">513300</div>
+      <div class="cell name">纳斯达克ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥97.00
+      </div>
+
+      <div class="cell profit-rate numeric positive">
+        +58.54%
+      </div>
+
+      <div class="cell trades numeric">11.89</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric positive">
+    25.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">72</div>
+
+    </div>
+  
+    <div class="table-row">
+      <div class="cell code">159985</div>
+      <div class="cell name">豆粕ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥88.00
+      </div>
+
+      <div class="cell profit-rate numeric positive">
+        +292.10%
+      </div>
+
+      <div class="cell trades numeric">10.82</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric positive">
+    23.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">52</div>
+
+    </div>
+  
+    <div class="table-row">
+      <div class="cell code">518880</div>
+      <div class="cell name">黄金ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥63.00
+      </div>
+
+      <div class="cell profit-rate numeric positive">
+        +684.86%
+      </div>
+
+      <div class="cell trades numeric">7.80</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric positive">
+    -24.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">50</div>
+
+    </div>
+  
+    <div class="table-row">
+      <div class="cell code">513520</div>
+      <div class="cell name">日经ETF</div>
+
+      <div class="cell profit-amount numeric">
+        ¥7.00
+      </div>
+
+      <div class="cell profit-rate numeric negative">
+        -256.71%
+      </div>
+
+      <div class="cell trades numeric">0.89</div>
+    <div class="cell winrate numeric">
+  <span class="cell profit-rate numeric negative">
+    18.0%
+  </span>
+</div>
+
+
+      <div class="cell days numeric">50</div>
+
+    </div>
+  
+</div>
+
+
+        <!-- 移动卡片 -->
+        <div class="strategy-holding-cards mobile-only">
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">创业板100ETF</div>
+        <div class="code">(159915)</div>
+      </div>
+
+      <div class="profit-rate positive">
+        +279.17%
+      </div>
+
+      <div class="detail">收益金额：<span>¥429.00</span></div>
+      <div class="detail">交易次数：<span>52</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate positive">
+          29.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>69</span></div>
+
+    </div>
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">德国ETF</div>
+        <div class="code">(513030)</div>
+      </div>
+
+      <div class="profit-rate positive">
+        +797.94%
+      </div>
+
+      <div class="detail">收益金额：<span>¥130.00</span></div>
+      <div class="detail">交易次数：<span>16</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate positive">
+          22.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>68</span></div>
+
+    </div>
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">纳斯达克ETF</div>
+        <div class="code">(513300)</div>
+      </div>
+
+      <div class="profit-rate positive">
+        +58.54%
+      </div>
+
+      <div class="detail">收益金额：<span>¥97.00</span></div>
+      <div class="detail">交易次数：<span>11</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate positive">
+          25.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>72</span></div>
+
+    </div>
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">豆粕ETF</div>
+        <div class="code">(159985)</div>
+      </div>
+
+      <div class="profit-rate positive">
+        +292.10%
+      </div>
+
+      <div class="detail">收益金额：<span>¥88.00</span></div>
+      <div class="detail">交易次数：<span>10</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate positive">
+          23.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>52</span></div>
+
+    </div>
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">黄金ETF</div>
+        <div class="code">(518880)</div>
+      </div>
+
+      <div class="profit-rate positive">
+        +684.86%
+      </div>
+
+      <div class="detail">收益金额：<span>¥63.00</span></div>
+      <div class="detail">交易次数：<span>7</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate negative">
+          -24.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>50</span></div>
+
+    </div>
+  
+    <div class="holding-card">
+      <div class="top-row">
+        <div class="name">日经ETF</div>
+        <div class="code">(513520)</div>
+      </div>
+
+      <div class="profit-rate negative">
+        -256.71%
+      </div>
+
+      <div class="detail">收益金额：<span>¥7.00</span></div>
+      <div class="detail">交易次数：<span>0</span></div>
+      <div class="detail">胜率：
+        <span class="profit-rate positive">
+          18.0%
+        </span>
+      </div>
+
+
+      <div class="detail">持有天数：<span>50</span></div>
+
+    </div>
+  
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  window.rangeSeriesMap = {"ytd":{"dates":["2025-12-31","2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11"],"strategy":[4.6,5.6,6.6,7.6,8.6,9.6,10.6,11.6,12.6,13.6,14.6,15.6],"benchmark":[43.8,44.8,45.8,46.8,47.8,48.8,49.8,50.8,51.8,52.8,53.8,54.8]},"1y":{"dates":["2025-01-12","2025-01-13","2025-01-14","2025-01-15","2025-01-16","2025-01-17","2025-01-18","2025-01-19","2025-01-20","2025-01-21","2025-01-22","2025-01-23","2025-01-24","2025-01-25","2025-01-26","2025-01-27","2025-01-28","2025-01-29","2025-01-30","2025-01-31","2025-02-01","2025-02-02","2025-02-03","2025-02-04","2025-02-05","2025-02-06","2025-02-07","2025-02-08","2025-02-09","2025-02-10","2025-02-11","2025-02-12","2025-02-13","2025-02-14","2025-02-15","2025-02-16","2025-02-17","2025-02-18","2025-02-19","2025-02-20","2025-02-21","2025-02-22","2025-02-23","2025-02-24","2025-02-25","2025-02-26","2025-02-27","2025-02-28","2025-03-01","2025-03-02","2025-03-03","2025-03-04","2025-03-05","2025-03-06","2025-03-07","2025-03-08","2025-03-09","2025-03-10","2025-03-11","2025-03-12","2025-03-13","2025-03-14","2025-03-15","2025-03-16","2025-03-17","2025-03-18","2025-03-19","2025-03-20","2025-03-21","2025-03-22","2025-03-23","2025-03-24","2025-03-25","2025-03-26","2025-03-27","2025-03-28","2025-03-29","2025-03-30","2025-03-31","2025-04-01","2025-04-02","2025-04-03","2025-04-04","2025-04-05","2025-04-06","2025-04-07","2025-04-08","2025-04-09","2025-04-10","2025-04-11","2025-04-12","2025-04-13","2025-04-14","2025-04-15","2025-04-16","2025-04-17","2025-04-18","2025-04-19","2025-04-20","2025-04-21","2025-04-22","2025-04-23","2025-04-24","2025-04-25","2025-04-26","2025-04-27","2025-04-28","2025-04-29","2025-04-30","2025-05-01","2025-05-02","2025-05-03","2025-05-04","2025-05-05","2025-05-06","2025-05-07","2025-05-08","2025-05-09","2025-05-10","2025-05-11","2025-05-12","2025-05-13","2025-05-14","2025-05-15","2025-05-16","2025-05-17","2025-05-18","2025-05-19","2025-05-20","2025-05-21","2025-05-22","2025-05-23","2025-05-24","2025-05-25","2025-05-26","2025-05-27","2025-05-28","2025-05-29","2025-05-30","2025-05-31","2025-06-01","2025-06-02","2025-06-03","2025-06-04","2025-06-05","2025-06-06","2025-06-07","2025-06-08","2025-06-09","2025-06-10","2025-06-11","2025-06-12","2025-06-13","2025-06-14","2025-06-15","2025-06-16","2025-06-17","2025-06-18","2025-06-19","2025-06-20","2025-06-21","2025-06-22","2025-06-23","2025-06-24","2025-06-25","2025-06-26","2025-06-27","2025-06-28","2025-06-29","2025-06-30","2025-07-01","2025-07-02","2025-07-03","2025-07-04","2025-07-05","2025-07-06","2025-07-07","2025-07-08","2025-07-09","2025-07-10","2025-07-11","2025-07-12","2025-07-13","2025-07-14","2025-07-15","2025-07-16","2025-07-17","2025-07-18","2025-07-19","2025-07-20","2025-07-21","2025-07-22","2025-07-23","2025-07-24","2025-07-25","2025-07-26","2025-07-27","2025-07-28","2025-07-29","2025-07-30","2025-07-31","2025-08-01","2025-08-02","2025-08-03","2025-08-04","2025-08-05","2025-08-06","2025-08-07","2025-08-08","2025-08-09","2025-08-10","2025-08-11","2025-08-12","2025-08-13","2025-08-14","2025-08-15","2025-08-16","2025-08-17","2025-08-18","2025-08-19","2025-08-20","2025-08-21","2025-08-22","2025-08-23","2025-08-24","2025-08-25","2025-08-26","2025-08-27","2025-08-28","2025-08-29","2025-08-30","2025-08-31","2025-09-01","2025-09-02","2025-09-03","2025-09-04","2025-09-05","2025-09-06","2025-09-07","2025-09-08","2025-09-09","2025-09-10","2025-09-11","2025-09-12","2025-09-13","2025-09-14","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-20","2025-09-21","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-27","2025-09-28","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-04","2025-10-05","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-11","2025-10-12","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-18","2025-10-19","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-25","2025-10-26","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-01","2025-11-02","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-08","2025-11-09","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-15","2025-11-16","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-22","2025-11-23","2025-11-24","2025-11-25","2025-11-26","2025-11-27","2025-11-28","2025-11-29","2025-11-30","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-06","2025-12-07","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-13","2025-12-14","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-20","2025-12-21","2025-12-22","2025-12-23","2025-12-24","2025-12-25","2025-12-26","2025-12-27","2025-12-28","2025-12-29","2025-12-30","2025-12-31","2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11","2026-01-12"],"strategy":[0.5,-1.2,-1.3,-1.9,-1.1,0.8,0.7,-1.7,0.1,-0.7,-1.6,-0.5,0,-0.7,-0.6,-0.5,0.3,-0.2,-0.8,0.6,-1.4,-1.8,0.4,-1.6,0,0.2,-0.4,0.3,1.4,-0.4,-0.2,0.4,-1.3,2.6,0.2,-0.3,0.8,0.9,1,0.7,2.3,0.8,-2.4,-0.8,1.1,0.6,-0.2,-1.8,1,-3.2,-0.5,0.3,0.4,0.3,1.3,2.3,-0.3,-0.9,-0.4,0.1,-1.3,0.5,-2,1.5,-0.2,0.2,0.3,-1.1,-0.5,0.8,0.1,0.2,-0.2,1.2,-0.6,1.3,-0.2,0.5,-2.3,-1,-0.8,-0.8,0.8,-0.3,-0.2,-2.5,-0.5,-1.1,1.6,1.4,1.3,2.3,0.9,0.1,-1.1,1.1,1.4,1.4,1.6,1,-0.8,-0.7,0.6,1.4,0.4,0,1.4,0.2,-1.1,-0.5,0.8,1.5,0.4,0,-1.1,-1.1,-0.3,-0.8,1.1,1.1,-0.3,-0.3,-0.8,0.2,-1.3,1.8,0.1,-1.3,0.6,-2,-0.2,0.4,0.3,1.5,0.2,-0.9,1.3,-0.5,0.7,-1.2,0,-0.2,0.4,0.3,-0.4,-0.6,0.5,0.2,-1,0.9,-0.1,-2.7,-0.9,-0.4,1.5,0.4,-0.2,0,1.4,0.6,-0.9,2.3,-0.8,-1.2,-1,2.8,-1,0.4,1.3,1.3,0.6,2.2,-1.5,1.1,-0.5,-0.7,0.6,0.7,1.2,1.2,-1.6,-1.1,-0.1,-1.1,-0.2,1.8,0.1,0.9,-0.8,0.4,0.2,2,1.9,-0.6,0.3,0.7,-0.3,0.8,-1.2,1.2,0.4,-0.4,1.1,1.7,0.9,-2.4,0.2,1.5,0,0.2,-0.6,0.2,0.7,-0.8,-1.1,0.9,0.1,0,-1.4,1.7,0.5,-0.4,1.2,1.2,-1.5,0.4,0.8,0.1,0,-0.5,0.5,1.6,-1.7,-0.7,-0.3,0.3,-1.2,-1.1,0.9,-0.1,0.4,0.2,-0.3,-0.7,-0.1,2.7,2.1,-0.6,-0.3,0.7,0.1,-0.1,-0.7,-0.5,0.6,0.2,1.7,-0.5,0.1,0,-0.3,0,0.7,0.8,0,-0.7,1,0.2,-1.4,0.2,-1.9,2.2,2,0.6,-1.5,1.8,0,-0.1,-0.5,0.2,0.5,0.9,1.6,0.7,-0.9,0.9,0.7,0.6,-1.3,-0.5,0,1.4,-0.3,1.9,-0.2,-0.8,-1.3,0.1,-0.1,-2.8,-0.9,-0.6,-1.4,-0.1,-0.3,-0.1,-0.8,0.7,0.6,0.1,-1.1,0.7,0.8,1,-2.2,0,0.5,0.4,-1.1,0.7,1.4,1.5,-0.4,-0.5,0.5,2.4,1.9,-1.6,-0.1,-1.5,-0.6,-0.9,1.3,0,-0.8,-0.6,-0.3,0.1,1.5,2.9,0,1.4,1.6,-1,0.6,-0.9,-1,0.1,-0.4,0.6,1.6,2.6,3.6,4.6,5.6,6.6,7.6,8.6,9.6,10.6,11.6,12.6,13.6,14.6,15.6,16.6],"benchmark":[132.8,87.7,46.9,-2.2,-27.9,-8.1,7.1,-26.1,-23.6,-34,-59.6,-64.6,-61.3,-68.9,-74.9,-78.9,-71.5,-71.1,-78.3,-68.3,-82.3,-99.2,-91.7,-106.2,-103.4,-99.1,-100.3,-95.2,-80.4,-81.7,-81.4,-75.8,-84.9,-61.7,-59,-59.9,-52.4,-44.9,-36.7,-30.8,-14.3,-8.3,-24.5,-29.1,-21.1,-16.8,-17.9,-29,-22.2,-40.9,-42.9,-40.7,-37.6,-35.3,-27.6,-14.6,-16.1,-20.5,-22.4,-21.6,-27.9,-24.8,-34.5,-27,-27.6,-26.5,-24.8,-29.6,-31.3,-27.2,-26.4,-25.1,-25.7,-20.2,-22.5,-16.9,-17.7,-15.6,-24.8,-28.6,-31.4,-34.2,-30.6,-31.4,-31.8,-40.9,-42.2,-46,-39.8,-34.5,-29.6,-21.1,-17.8,-17.4,-21.1,-17.2,-12.4,-7.5,-2,1.2,-1.5,-3.7,-1.7,2.6,4,4,8.2,8.7,5.4,3.9,6.1,10.6,11.6,11.5,8.1,4.8,3.9,1.8,4.7,7.8,6.8,5.9,3.8,4.4,1,5.7,6,2.5,3.9,-1.4,-2,-0.9,-0.1,3.6,4.2,1.9,5,3.7,5.4,2.5,2.4,1.9,2.9,3.7,2.6,1.4,2.5,3,0.8,2.9,2.7,-3.4,-5.4,-6.4,-3.1,-2.2,-2.7,-2.7,0.3,1.6,-0.2,4.6,2.9,0.3,-1.7,4.2,2,2.7,5.4,8,9.1,13.5,10.6,12.6,11.6,10.1,11.2,12.5,14.6,16.9,13.8,11.6,11.3,9.2,8.8,12.1,12.3,13.9,12.4,13.1,13.5,17,20.3,19.2,19.6,20.7,20.1,21.3,19.2,21.2,21.8,20.9,22.8,25.5,26.9,22.7,22.9,25.2,25,25.2,24.2,24.4,25.4,24,22,23.3,23.4,23.3,21,23.6,24.3,23.5,25.4,27,24.6,25.1,26.1,26.1,26,25.1,25.8,28.1,25.4,24.3,23.7,24,22.1,20.4,21.6,21.4,21.9,22,21.5,20.5,20.3,24,26.8,25.8,25.3,26.2,26.2,26,25,24.2,25,25.1,27.4,26.6,26.6,26.4,25.9,25.8,26.6,27.5,27.5,26.5,27.8,27.9,25.9,26.1,23.6,26.3,28.7,29.4,27.4,29.6,29.6,29.3,28.7,28.8,29.3,30.3,32.2,33,31.8,32.7,33.4,34,32.3,32,31.9,32.7,32.2,34.8,35.8,33,28.6,29.1,29.8,25.2,23.5,24.2,24.1,26.3,27.3,26.2,24.3,27.3,27.9,28.8,29.4,30.9,31.9,33.9,32,32.6,32.8,33.6,33.2,33.3,36.7,40.8,39.8,41.1,41.7,44.4,47.2,44.9,43.1,41.7,41.2,39.7,42.8,39.7,38.4,38.1,36.7,35.8,36.4,39.1,36.3,37,41.9,41.6,41,39.2,38.2,40.5,38.8,39.8,40.8,41.8,42.8,43.8,44.8,45.8,46.8,47.8,48.8,49.8,50.8,51.8,52.8,53.8,54.8,55.8]},"3y":{"dates":["2023-01-12","2023-01-13","2023-01-14","2023-01-15","2023-01-16","2023-01-17","2023-01-18","2023-01-19","2023-01-20","2023-01-21","2023-01-22","2023-01-23","2023-01-24","2023-01-25","2023-01-26","2023-01-27","2023-01-28","2023-01-29","2023-01-30","2023-01-31","2023-02-01","2023-02-02","2023-02-03","2023-02-04","2023-02-05","2023-02-06","2023-02-07","2023-02-08","2023-02-09","2023-02-10","2023-02-11","2023-02-12","2023-02-13","2023-02-14","2023-02-15","2023-02-16","2023-02-17","2023-02-18","2023-02-19","2023-02-20","2023-02-21","2023-02-22","2023-02-23","2023-02-24","2023-02-25","2023-02-26","2023-02-27","2023-02-28","2023-03-01","2023-03-02","2023-03-03","2023-03-04","2023-03-05","2023-03-06","2023-03-07","2023-03-08","2023-03-09","2023-03-10","2023-03-11","2023-03-12","2023-03-13","2023-03-14","2023-03-15","2023-03-16","2023-03-17","2023-03-18","2023-03-19","2023-03-20","2023-03-21","2023-03-22","2023-03-23","2023-03-24","2023-03-25","2023-03-26","2023-03-27","2023-03-28","2023-03-29","2023-03-30","2023-03-31","2023-04-01","2023-04-02","2023-04-03","2023-04-04","2023-04-05","2023-04-06","2023-04-07","2023-04-08","2023-04-09","2023-04-10","2023-04-11","2023-04-12","2023-04-13","2023-04-14","2023-04-15","2023-04-16","2023-04-17","2023-04-18","2023-04-19","2023-04-20","2023-04-21","2023-04-22","2023-04-23","2023-04-24","2023-04-25","2023-04-26","2023-04-27","2023-04-28","2023-04-29","2023-04-30","2023-05-01","2023-05-02","2023-05-03","2023-05-04","2023-05-05","2023-05-06","2023-05-07","2023-05-08","2023-05-09","2023-05-10","2023-05-11","2023-05-12","2023-05-13","2023-05-14","2023-05-15","2023-05-16","2023-05-17","2023-05-18","2023-05-19","2023-05-20","2023-05-21","2023-05-22","2023-05-23","2023-05-24","2023-05-25","2023-05-26","2023-05-27","2023-05-28","2023-05-29","2023-05-30","2023-05-31","2023-06-01","2023-06-02","2023-06-03","2023-06-04","2023-06-05","2023-06-06","2023-06-07","2023-06-08","2023-06-09","2023-06-10","2023-06-11","2023-06-12","2023-06-13","2023-06-14","2023-06-15","2023-06-16","2023-06-17","2023-06-18","2023-06-19","2023-06-20","2023-06-21","2023-06-22","2023-06-23","2023-06-24","2023-06-25","2023-06-26","2023-06-27","2023-06-28","2023-06-29","2023-06-30","2023-07-01","2023-07-02","2023-07-03","2023-07-04","2023-07-05","2023-07-06","2023-07-07","2023-07-08","2023-07-09","2023-07-10","2023-07-11","2023-07-12","2023-07-13","2023-07-14","2023-07-15","2023-07-16","2023-07-17","2023-07-18","2023-07-19","2023-07-20","2023-07-21","2023-07-22","2023-07-23","2023-07-24","2023-07-25","2023-07-26","2023-07-27","2023-07-28","2023-07-29","2023-07-30","2023-07-31","2023-08-01","2023-08-02","2023-08-03","2023-08-04","2023-08-05","2023-08-06","2023-08-07","2023-08-08","2023-08-09","2023-08-10","2023-08-11","2023-08-12","2023-08-13","2023-08-14","2023-08-15","2023-08-16","2023-08-17","2023-08-18","2023-08-19","2023-08-20","2023-08-21","2023-08-22","2023-08-23","2023-08-24","2023-08-25","2023-08-26","2023-08-27","2023-08-28","2023-08-29","2023-08-30","2023-08-31","2023-09-01","2023-09-02","2023-09-03","2023-09-04","2023-09-05","2023-09-06","2023-09-07","2023-09-08","2023-09-09","2023-09-10","2023-09-11","2023-09-12","2023-09-13","2023-09-14","2023-09-15","2023-09-16","2023-09-17","2023-09-18","2023-09-19","2023-09-20","2023-09-21","2023-09-22","2023-09-23","2023-09-24","2023-09-25","2023-09-26","2023-09-27","2023-09-28","2023-09-29","2023-09-30","2023-10-01","2023-10-02","2023-10-03","2023-10-04","2023-10-05","2023-10-06","2023-10-07","2023-10-08","2023-10-09","2023-10-10","2023-10-11","2023-10-12","2023-10-13","2023-10-14","2023-10-15","2023-10-16","2023-10-17","2023-10-18","2023-10-19","2023-10-20","2023-10-21","2023-10-22","2023-10-23","2023-10-24","2023-10-25","2023-10-26","2023-10-27","2023-10-28","2023-10-29","2023-10-30","2023-10-31","2023-11-01","2023-11-02","2023-11-03","2023-11-04","2023-11-05","2023-11-06","2023-11-07","2023-11-08","2023-11-09","2023-11-10","2023-11-11","2023-11-12","2023-11-13","2023-11-14","2023-11-15","2023-11-16","2023-11-17","2023-11-18","2023-11-19","2023-11-20","2023-11-21","2023-11-22","2023-11-23","2023-11-24","2023-11-25","2023-11-26","2023-11-27","2023-11-28","2023-11-29","2023-11-30","2023-12-01","2023-12-02","2023-12-03","2023-12-04","2023-12-05","2023-12-06","2023-12-07","2023-12-08","2023-12-09","2023-12-10","2023-12-11","2023-12-12","2023-12-13","2023-12-14","2023-12-15","2023-12-16","2023-12-17","2023-12-18","2023-12-19","2023-12-20","2023-12-21","2023-12-22","2023-12-23","2023-12-24","2023-12-25","2023-12-26","2023-12-27","2023-12-28","2023-12-29","2023-12-30","2023-12-31","2024-01-01","2024-01-02","2024-01-03","2024-01-04","2024-01-05","2024-01-06","2024-01-07","2024-01-08","2024-01-09","2024-01-10","2024-01-11","2024-01-12","2024-01-13","2024-01-14","2024-01-15","2024-01-16","2024-01-17","2024-01-18","2024-01-19","2024-01-20","2024-01-21","2024-01-22","2024-01-23","2024-01-24","2024-01-25","2024-01-26","2024-01-27","2024-01-28","2024-01-29","2024-01-30","2024-01-31","2024-02-01","2024-02-02","2024-02-03","2024-02-04","2024-02-05","2024-02-06","2024-02-07","2024-02-08","2024-02-09","2024-02-10","2024-02-11","2024-02-12","2024-02-13","2024-02-14","2024-02-15","2024-02-16","2024-02-17","2024-02-18","2024-02-19","2024-02-20","2024-02-21","2024-02-22","2024-02-23","2024-02-24","2024-02-25","2024-02-26","2024-02-27","2024-02-28","2024-02-29","2024-03-01","2024-03-02","2024-03-03","2024-03-04","2024-03-05","2024-03-06","2024-03-07","2024-03-08","2024-03-09","2024-03-10","2024-03-11","2024-03-12","2024-03-13","2024-03-14","2024-03-15","2024-03-16","2024-03-17","2024-03-18","2024-03-19","2024-03-20","2024-03-21","2024-03-22","2024-03-23","2024-03-24","2024-03-25","2024-03-26","2024-03-27","2024-03-28","2024-03-29","2024-03-30","2024-03-31","2024-04-01","2024-04-02","2024-04-03","2024-04-04","2024-04-05","2024-04-06","2024-04-07","2024-04-08","2024-04-09","2024-04-10","2024-04-11","2024-04-12","2024-04-13","2024-04-14","2024-04-15","2024-04-16","2024-04-17","2024-04-18","2024-04-19","2024-04-20","2024-04-21","2024-04-22","2024-04-23","2024-04-24","2024-04-25","2024-04-26","2024-04-27","2024-04-28","2024-04-29","2024-04-30","2024-05-01","2024-05-02","2024-05-03","2024-05-04","2024-05-05","2024-05-06","2024-05-07","2024-05-08","2024-05-09","2024-05-10","2024-05-11","2024-05-12","2024-05-13","2024-05-14","2024-05-15","2024-05-16","2024-05-17","2024-05-18","2024-05-19","2024-05-20","2024-05-21","2024-05-22","2024-05-23","2024-05-24","2024-05-25","2024-05-26","2024-05-27","2024-05-28","2024-05-29","2024-05-30","2024-05-31","2024-06-01","2024-06-02","2024-06-03","2024-06-04","2024-06-05","2024-06-06","2024-06-07","2024-06-08","2024-06-09","2024-06-10","2024-06-11","2024-06-12","2024-06-13","2024-06-14","2024-06-15","2024-06-16","2024-06-17","2024-06-18","2024-06-19","2024-06-20","2024-06-21","2024-06-22","2024-06-23","2024-06-24","2024-06-25","2024-06-26","2024-06-27","2024-06-28","2024-06-29","2024-06-30","2024-07-01","2024-07-02","2024-07-03","2024-07-04","2024-07-05","2024-07-06","2024-07-07","2024-07-08","2024-07-09","2024-07-10","2024-07-11","2024-07-12","2024-07-13","2024-07-14","2024-07-15","2024-07-16","2024-07-17","2024-07-18","2024-07-19","2024-07-20","2024-07-21","2024-07-22","2024-07-23","2024-07-24","2024-07-25","2024-07-26","2024-07-27","2024-07-28","2024-07-29","2024-07-30","2024-07-31","2024-08-01","2024-08-02","2024-08-03","2024-08-04","2024-08-05","2024-08-06","2024-08-07","2024-08-08","2024-08-09","2024-08-10","2024-08-11","2024-08-12","2024-08-13","2024-08-14","2024-08-15","2024-08-16","2024-08-17","2024-08-18","2024-08-19","2024-08-20","2024-08-21","2024-08-22","2024-08-23","2024-08-24","2024-08-25","2024-08-26","2024-08-27","2024-08-28","2024-08-29","2024-08-30","2024-08-31","2024-09-01","2024-09-02","2024-09-03","2024-09-04","2024-09-05","2024-09-06","2024-09-07","2024-09-08","2024-09-09","2024-09-10","2024-09-11","2024-09-12","2024-09-13","2024-09-14","2024-09-15","2024-09-16","2024-09-17","2024-09-18","2024-09-19","2024-09-20","2024-09-21","2024-09-22","2024-09-23","2024-09-24","2024-09-25","2024-09-26","2024-09-27","2024-09-28","2024-09-29","2024-09-30","2024-10-01","2024-10-02","2024-10-03","2024-10-04","2024-10-05","2024-10-06","2024-10-07","2024-10-08","2024-10-09","2024-10-10","2024-10-11","2024-10-12","2024-10-13","2024-10-14","2024-10-15","2024-10-16","2024-10-17","2024-10-18","2024-10-19","2024-10-20","2024-10-21","2024-10-22","2024-10-23","2024-10-24","2024-10-25","2024-10-26","2024-10-27","2024-10-28","2024-10-29","2024-10-30","2024-10-31","2024-11-01","2024-11-02","2024-11-03","2024-11-04","2024-11-05","2024-11-06","2024-11-07","2024-11-08","2024-11-09","2024-11-10","2024-11-11","2024-11-12","2024-11-13","2024-11-14","2024-11-15","2024-11-16","2024-11-17","2024-11-18","2024-11-19","2024-11-20","2024-11-21","2024-11-22","2024-11-23","2024-11-24","2024-11-25","2024-11-26","2024-11-27","2024-11-28","2024-11-29","2024-11-30","2024-12-01","2024-12-02","2024-12-03","2024-12-04","2024-12-05","2024-12-06","2024-12-07","2024-12-08","2024-12-09","2024-12-10","2024-12-11","2024-12-12","2024-12-13","2024-12-14","2024-12-15","2024-12-16","2024-12-17","2024-12-18","2024-12-19","2024-12-20","2024-12-21","2024-12-22","2024-12-23","2024-12-24","2024-12-25","2024-12-26","2024-12-27","2024-12-28","2024-12-29","2024-12-30","2024-12-31","2025-01-01","2025-01-02","2025-01-03","2025-01-04","2025-01-05","2025-01-06","2025-01-07","2025-01-08","2025-01-09","2025-01-10","2025-01-11","2025-01-12","2025-01-13","2025-01-14","2025-01-15","2025-01-16","2025-01-17","2025-01-18","2025-01-19","2025-01-20","2025-01-21","2025-01-22","2025-01-23","2025-01-24","2025-01-25","2025-01-26","2025-01-27","2025-01-28","2025-01-29","2025-01-30","2025-01-31","2025-02-01","2025-02-02","2025-02-03","2025-02-04","2025-02-05","2025-02-06","2025-02-07","2025-02-08","2025-02-09","2025-02-10","2025-02-11","2025-02-12","2025-02-13","2025-02-14","2025-02-15","2025-02-16","2025-02-17","2025-02-18","2025-02-19","2025-02-20","2025-02-21","2025-02-22","2025-02-23","2025-02-24","2025-02-25","2025-02-26","2025-02-27","2025-02-28","2025-03-01","2025-03-02","2025-03-03","2025-03-04","2025-03-05","2025-03-06","2025-03-07","2025-03-08","2025-03-09","2025-03-10","2025-03-11","2025-03-12","2025-03-13","2025-03-14","2025-03-15","2025-03-16","2025-03-17","2025-03-18","2025-03-19","2025-03-20","2025-03-21","2025-03-22","2025-03-23","2025-03-24","2025-03-25","2025-03-26","2025-03-27","2025-03-28","2025-03-29","2025-03-30","2025-03-31","2025-04-01","2025-04-02","2025-04-03","2025-04-04","2025-04-05","2025-04-06","2025-04-07","2025-04-08","2025-04-09","2025-04-10","2025-04-11","2025-04-12","2025-04-13","2025-04-14","2025-04-15","2025-04-16","2025-04-17","2025-04-18","2025-04-19","2025-04-20","2025-04-21","2025-04-22","2025-04-23","2025-04-24","2025-04-25","2025-04-26","2025-04-27","2025-04-28","2025-04-29","2025-04-30","2025-05-01","2025-05-02","2025-05-03","2025-05-04","2025-05-05","2025-05-06","2025-05-07","2025-05-08","2025-05-09","2025-05-10","2025-05-11","2025-05-12","2025-05-13","2025-05-14","2025-05-15","2025-05-16","2025-05-17","2025-05-18","2025-05-19","2025-05-20","2025-05-21","2025-05-22","2025-05-23","2025-05-24","2025-05-25","2025-05-26","2025-05-27","2025-05-28","2025-05-29","2025-05-30","2025-05-31","2025-06-01","2025-06-02","2025-06-03","2025-06-04","2025-06-05","2025-06-06","2025-06-07","2025-06-08","2025-06-09","2025-06-10","2025-06-11","2025-06-12","2025-06-13","2025-06-14","2025-06-15","2025-06-16","2025-06-17","2025-06-18","2025-06-19","2025-06-20","2025-06-21","2025-06-22","2025-06-23","2025-06-24","2025-06-25","2025-06-26","2025-06-27","2025-06-28","2025-06-29","2025-06-30","2025-07-01","2025-07-02","2025-07-03","2025-07-04","2025-07-05","2025-07-06","2025-07-07","2025-07-08","2025-07-09","2025-07-10","2025-07-11","2025-07-12","2025-07-13","2025-07-14","2025-07-15","2025-07-16","2025-07-17","2025-07-18","2025-07-19","2025-07-20","2025-07-21","2025-07-22","2025-07-23","2025-07-24","2025-07-25","2025-07-26","2025-07-27","2025-07-28","2025-07-29","2025-07-30","2025-07-31","2025-08-01","2025-08-02","2025-08-03","2025-08-04","2025-08-05","2025-08-06","2025-08-07","2025-08-08","2025-08-09","2025-08-10","2025-08-11","2025-08-12","2025-08-13","2025-08-14","2025-08-15","2025-08-16","2025-08-17","2025-08-18","2025-08-19","2025-08-20","2025-08-21","2025-08-22","2025-08-23","2025-08-24","2025-08-25","2025-08-26","2025-08-27","2025-08-28","2025-08-29","2025-08-30","2025-08-31","2025-09-01","2025-09-02","2025-09-03","2025-09-04","2025-09-05","2025-09-06","2025-09-07","2025-09-08","2025-09-09","2025-09-10","2025-09-11","2025-09-12","2025-09-13","2025-09-14","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-20","2025-09-21","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-27","2025-09-28","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-04","2025-10-05","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-11","2025-10-12","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-18","2025-10-19","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-25","2025-10-26","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-01","2025-11-02","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-08","2025-11-09","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-15","2025-11-16","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-22","2025-11-23","2025-11-24","2025-11-25","2025-11-26","2025-11-27","2025-11-28","2025-11-29","2025-11-30","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-06","2025-12-07","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-13","2025-12-14","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-20","2025-12-21","2025-12-22","2025-12-23","2025-12-24","2025-12-25","2025-12-26","2025-12-27","2025-12-28","2025-12-29","2025-12-30","2025-12-31","2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11","2026-01-12"],"strategy":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.2,0.1,0.7,0.1,-0.2,-1,1.5,2.3,-0.3,-0.7,1,0.5,-1.2,-1.3,-1.9,-1.1,0.8,0.7,-1.7,0.1,-0.7,-1.6,-0.5,0,-0.7,-0.6,-0.5,0.3,-0.2,-0.8,0.6,-1.4,-1.8,0.4,-1.6,0,0.2,-0.4,0.3,1.4,-0.4,-0.2,0.4,-1.3,2.6,0.2,-0.3,0.8,0.9,1,0.7,2.3,0.8,-2.4,-0.8,1.1,0.6,-0.2,-1.8,1,-3.2,-0.5,0.3,0.4,0.3,1.3,2.3,-0.3,-0.9,-0.4,0.1,-1.3,0.5,-2,1.5,-0.2,0.2,0.3,-1.1,-0.5,0.8,0.1,0.2,-0.2,1.2,-0.6,1.3,-0.2,0.5,-2.3,-1,-0.8,-0.8,0.8,-0.3,-0.2,-2.5,-0.5,-1.1,1.6,1.4,1.3,2.3,0.9,0.1,-1.1,1.1,1.4,1.4,1.6,1,-0.8,-0.7,0.6,1.4,0.4,0,1.4,0.2,-1.1,-0.5,0.8,1.5,0.4,0,-1.1,-1.1,-0.3,-0.8,1.1,1.1,-0.3,-0.3,-0.8,0.2,-1.3,1.8,0.1,-1.3,0.6,-2,-0.2,0.4,0.3,1.5,0.2,-0.9,1.3,-0.5,0.7,-1.2,0,-0.2,0.4,0.3,-0.4,-0.6,0.5,0.2,-1,0.9,-0.1,-2.7,-0.9,-0.4,1.5,0.4,-0.2,0,1.4,0.6,-0.9,2.3,-0.8,-1.2,-1,2.8,-1,0.4,1.3,1.3,0.6,2.2,-1.5,1.1,-0.5,-0.7,0.6,0.7,1.2,1.2,-1.6,-1.1,-0.1,-1.1,-0.2,1.8,0.1,0.9,-0.8,0.4,0.2,2,1.9,-0.6,0.3,0.7,-0.3,0.8,-1.2,1.2,0.4,-0.4,1.1,1.7,0.9,-2.4,0.2,1.5,0,0.2,-0.6,0.2,0.7,-0.8,-1.1,0.9,0.1,0,-1.4,1.7,0.5,-0.4,1.2,1.2,-1.5,0.4,0.8,0.1,0,-0.5,0.5,1.6,-1.7,-0.7,-0.3,0.3,-1.2,-1.1,0.9,-0.1,0.4,0.2,-0.3,-0.7,-0.1,2.7,2.1,-0.6,-0.3,0.7,0.1,-0.1,-0.7,-0.5,0.6,0.2,1.7,-0.5,0.1,0,-0.3,0,0.7,0.8,0,-0.7,1,0.2,-1.4,0.2,-1.9,2.2,2,0.6,-1.5,1.8,0,-0.1,-0.5,0.2,0.5,0.9,1.6,0.7,-0.9,0.9,0.7,0.6,-1.3,-0.5,0,1.4,-0.3,1.9,-0.2,-0.8,-1.3,0.1,-0.1,-2.8,-0.9,-0.6,-1.4,-0.1,-0.3,-0.1,-0.8,0.7,0.6,0.1,-1.1,0.7,0.8,1,-2.2,0,0.5,0.4,-1.1,0.7,1.4,1.5,-0.4,-0.5,0.5,2.4,1.9,-1.6,-0.1,-1.5,-0.6,-0.9,1.3,0,-0.8,-0.6,-0.3,0.1,1.5,2.9,0,1.4,1.6,-1,0.6,-0.9,-1,0.1,-0.4,0.6,1.6,2.6,3.6,4.6,5.6,6.6,7.6,8.6,9.6,10.6,11.6,12.6,13.6,14.6,15.6,16.6],"benchmark":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,60.7,122.5,105.5,72.4,1.5,77.8,175.2,145.2,105.8,128.3,132.8,87.7,46.9,-2.2,-27.9,-8.1,7.1,-26.1,-23.6,-34,-59.6,-64.6,-61.3,-68.9,-74.9,-78.9,-71.5,-71.1,-78.3,-68.3,-82.3,-99.2,-91.7,-106.2,-103.4,-99.1,-100.3,-95.2,-80.4,-81.7,-81.4,-75.8,-84.9,-61.7,-59,-59.9,-52.4,-44.9,-36.7,-30.8,-14.3,-8.3,-24.5,-29.1,-21.1,-16.8,-17.9,-29,-22.2,-40.9,-42.9,-40.7,-37.6,-35.3,-27.6,-14.6,-16.1,-20.5,-22.4,-21.6,-27.9,-24.8,-34.5,-27,-27.6,-26.5,-24.8,-29.6,-31.3,-27.2,-26.4,-25.1,-25.7,-20.2,-22.5,-16.9,-17.7,-15.6,-24.8,-28.6,-31.4,-34.2,-30.6,-31.4,-31.8,-40.9,-42.2,-46,-39.8,-34.5,-29.6,-21.1,-17.8,-17.4,-21.1,-17.2,-12.4,-7.5,-2,1.2,-1.5,-3.7,-1.7,2.6,4,4,8.2,8.7,5.4,3.9,6.1,10.6,11.6,11.5,8.1,4.8,3.9,1.8,4.7,7.8,6.8,5.9,3.8,4.4,1,5.7,6,2.5,3.9,-1.4,-2,-0.9,-0.1,3.6,4.2,1.9,5,3.7,5.4,2.5,2.4,1.9,2.9,3.7,2.6,1.4,2.5,3,0.8,2.9,2.7,-3.4,-5.4,-6.4,-3.1,-2.2,-2.7,-2.7,0.3,1.6,-0.2,4.6,2.9,0.3,-1.7,4.2,2,2.7,5.4,8,9.1,13.5,10.6,12.6,11.6,10.1,11.2,12.5,14.6,16.9,13.8,11.6,11.3,9.2,8.8,12.1,12.3,13.9,12.4,13.1,13.5,17,20.3,19.2,19.6,20.7,20.1,21.3,19.2,21.2,21.8,20.9,22.8,25.5,26.9,22.7,22.9,25.2,25,25.2,24.2,24.4,25.4,24,22,23.3,23.4,23.3,21,23.6,24.3,23.5,25.4,27,24.6,25.1,26.1,26.1,26,25.1,25.8,28.1,25.4,24.3,23.7,24,22.1,20.4,21.6,21.4,21.9,22,21.5,20.5,20.3,24,26.8,25.8,25.3,26.2,26.2,26,25,24.2,25,25.1,27.4,26.6,26.6,26.4,25.9,25.8,26.6,27.5,27.5,26.5,27.8,27.9,25.9,26.1,23.6,26.3,28.7,29.4,27.4,29.6,29.6,29.3,28.7,28.8,29.3,30.3,32.2,33,31.8,32.7,33.4,34,32.3,32,31.9,32.7,32.2,34.8,35.8,33,28.6,29.1,29.8,25.2,23.5,24.2,24.1,26.3,27.3,26.2,24.3,27.3,27.9,28.8,29.4,30.9,31.9,33.9,32,32.6,32.8,33.6,33.2,33.3,36.7,40.8,39.8,41.1,41.7,44.4,47.2,44.9,43.1,41.7,41.2,39.7,42.8,39.7,38.4,38.1,36.7,35.8,36.4,39.1,36.3,37,41.9,41.6,41,39.2,38.2,40.5,38.8,39.8,40.8,41.8,42.8,43.8,44.8,45.8,46.8,47.8,48.8,49.8,50.8,51.8,52.8,53.8,54.8,55.8]},"all":{"dates":["2025-01-01","2025-01-02","2025-01-03","2025-01-04","2025-01-05","2025-01-06","2025-01-07","2025-01-08","2025-01-09","2025-01-10","2025-01-11","2025-01-12","2025-01-13","2025-01-14","2025-01-15","2025-01-16","2025-01-17","2025-01-18","2025-01-19","2025-01-20","2025-01-21","2025-01-22","2025-01-23","2025-01-24","2025-01-25","2025-01-26","2025-01-27","2025-01-28","2025-01-29","2025-01-30","2025-01-31","2025-02-01","2025-02-02","2025-02-03","2025-02-04","2025-02-05","2025-02-06","2025-02-07","2025-02-08","2025-02-09","2025-02-10","2025-02-11","2025-02-12","2025-02-13","2025-02-14","2025-02-15","2025-02-16","2025-02-17","2025-02-18","2025-02-19","2025-02-20","2025-02-21","2025-02-22","2025-02-23","2025-02-24","2025-02-25","2025-02-26","2025-02-27","2025-02-28","2025-03-01","2025-03-02","2025-03-03","2025-03-04","2025-03-05","2025-03-06","2025-03-07","2025-03-08","2025-03-09","2025-03-10","2025-03-11","2025-03-12","2025-03-13","2025-03-14","2025-03-15","2025-03-16","2025-03-17","2025-03-18","2025-03-19","2025-03-20","2025-03-21","2025-03-22","2025-03-23","2025-03-24","2025-03-25","2025-03-26","2025-03-27","2025-03-28","2025-03-29","2025-03-30","2025-03-31","2025-04-01","2025-04-02","2025-04-03","2025-04-04","2025-04-05","2025-04-06","2025-04-07","2025-04-08","2025-04-09","2025-04-10","2025-04-11","2025-04-12","2025-04-13","2025-04-14","2025-04-15","2025-04-16","2025-04-17","2025-04-18","2025-04-19","2025-04-20","2025-04-21","2025-04-22","2025-04-23","2025-04-24","2025-04-25","2025-04-26","2025-04-27","2025-04-28","2025-04-29","2025-04-30","2025-05-01","2025-05-02","2025-05-03","2025-05-04","2025-05-05","2025-05-06","2025-05-07","2025-05-08","2025-05-09","2025-05-10","2025-05-11","2025-05-12","2025-05-13","2025-05-14","2025-05-15","2025-05-16","2025-05-17","2025-05-18","2025-05-19","2025-05-20","2025-05-21","2025-05-22","2025-05-23","2025-05-24","2025-05-25","2025-05-26","2025-05-27","2025-05-28","2025-05-29","2025-05-30","2025-05-31","2025-06-01","2025-06-02","2025-06-03","2025-06-04","2025-06-05","2025-06-06","2025-06-07","2025-06-08","2025-06-09","2025-06-10","2025-06-11","2025-06-12","2025-06-13","2025-06-14","2025-06-15","2025-06-16","2025-06-17","2025-06-18","2025-06-19","2025-06-20","2025-06-21","2025-06-22","2025-06-23","2025-06-24","2025-06-25","2025-06-26","2025-06-27","2025-06-28","2025-06-29","2025-06-30","2025-07-01","2025-07-02","2025-07-03","2025-07-04","2025-07-05","2025-07-06","2025-07-07","2025-07-08","2025-07-09","2025-07-10","2025-07-11","2025-07-12","2025-07-13","2025-07-14","2025-07-15","2025-07-16","2025-07-17","2025-07-18","2025-07-19","2025-07-20","2025-07-21","2025-07-22","2025-07-23","2025-07-24","2025-07-25","2025-07-26","2025-07-27","2025-07-28","2025-07-29","2025-07-30","2025-07-31","2025-08-01","2025-08-02","2025-08-03","2025-08-04","2025-08-05","2025-08-06","2025-08-07","2025-08-08","2025-08-09","2025-08-10","2025-08-11","2025-08-12","2025-08-13","2025-08-14","2025-08-15","2025-08-16","2025-08-17","2025-08-18","2025-08-19","2025-08-20","2025-08-21","2025-08-22","2025-08-23","2025-08-24","2025-08-25","2025-08-26","2025-08-27","2025-08-28","2025-08-29","2025-08-30","2025-08-31","2025-09-01","2025-09-02","2025-09-03","2025-09-04","2025-09-05","2025-09-06","2025-09-07","2025-09-08","2025-09-09","2025-09-10","2025-09-11","2025-09-12","2025-09-13","2025-09-14","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-20","2025-09-21","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-27","2025-09-28","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-04","2025-10-05","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-11","2025-10-12","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-18","2025-10-19","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-25","2025-10-26","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-01","2025-11-02","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-08","2025-11-09","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-15","2025-11-16","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-22","2025-11-23","2025-11-24","2025-11-25","2025-11-26","2025-11-27","2025-11-28","2025-11-29","2025-11-30","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-06","2025-12-07","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-13","2025-12-14","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-20","2025-12-21","2025-12-22","2025-12-23","2025-12-24","2025-12-25","2025-12-26","2025-12-27","2025-12-28","2025-12-29","2025-12-30","2025-12-31","2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11","2026-01-12"],"strategy":[0.2,0.1,0.7,0.1,-0.2,-1,1.5,2.3,-0.3,-0.7,1,0.5,-1.2,-1.3,-1.9,-1.1,0.8,0.7,-1.7,0.1,-0.7,-1.6,-0.5,0,-0.7,-0.6,-0.5,0.3,-0.2,-0.8,0.6,-1.4,-1.8,0.4,-1.6,0,0.2,-0.4,0.3,1.4,-0.4,-0.2,0.4,-1.3,2.6,0.2,-0.3,0.8,0.9,1,0.7,2.3,0.8,-2.4,-0.8,1.1,0.6,-0.2,-1.8,1,-3.2,-0.5,0.3,0.4,0.3,1.3,2.3,-0.3,-0.9,-0.4,0.1,-1.3,0.5,-2,1.5,-0.2,0.2,0.3,-1.1,-0.5,0.8,0.1,0.2,-0.2,1.2,-0.6,1.3,-0.2,0.5,-2.3,-1,-0.8,-0.8,0.8,-0.3,-0.2,-2.5,-0.5,-1.1,1.6,1.4,1.3,2.3,0.9,0.1,-1.1,1.1,1.4,1.4,1.6,1,-0.8,-0.7,0.6,1.4,0.4,0,1.4,0.2,-1.1,-0.5,0.8,1.5,0.4,0,-1.1,-1.1,-0.3,-0.8,1.1,1.1,-0.3,-0.3,-0.8,0.2,-1.3,1.8,0.1,-1.3,0.6,-2,-0.2,0.4,0.3,1.5,0.2,-0.9,1.3,-0.5,0.7,-1.2,0,-0.2,0.4,0.3,-0.4,-0.6,0.5,0.2,-1,0.9,-0.1,-2.7,-0.9,-0.4,1.5,0.4,-0.2,0,1.4,0.6,-0.9,2.3,-0.8,-1.2,-1,2.8,-1,0.4,1.3,1.3,0.6,2.2,-1.5,1.1,-0.5,-0.7,0.6,0.7,1.2,1.2,-1.6,-1.1,-0.1,-1.1,-0.2,1.8,0.1,0.9,-0.8,0.4,0.2,2,1.9,-0.6,0.3,0.7,-0.3,0.8,-1.2,1.2,0.4,-0.4,1.1,1.7,0.9,-2.4,0.2,1.5,0,0.2,-0.6,0.2,0.7,-0.8,-1.1,0.9,0.1,0,-1.4,1.7,0.5,-0.4,1.2,1.2,-1.5,0.4,0.8,0.1,0,-0.5,0.5,1.6,-1.7,-0.7,-0.3,0.3,-1.2,-1.1,0.9,-0.1,0.4,0.2,-0.3,-0.7,-0.1,2.7,2.1,-0.6,-0.3,0.7,0.1,-0.1,-0.7,-0.5,0.6,0.2,1.7,-0.5,0.1,0,-0.3,0,0.7,0.8,0,-0.7,1,0.2,-1.4,0.2,-1.9,2.2,2,0.6,-1.5,1.8,0,-0.1,-0.5,0.2,0.5,0.9,1.6,0.7,-0.9,0.9,0.7,0.6,-1.3,-0.5,0,1.4,-0.3,1.9,-0.2,-0.8,-1.3,0.1,-0.1,-2.8,-0.9,-0.6,-1.4,-0.1,-0.3,-0.1,-0.8,0.7,0.6,0.1,-1.1,0.7,0.8,1,-2.2,0,0.5,0.4,-1.1,0.7,1.4,1.5,-0.4,-0.5,0.5,2.4,1.9,-1.6,-0.1,-1.5,-0.6,-0.9,1.3,0,-0.8,-0.6,-0.3,0.1,1.5,2.9,0,1.4,1.6,-1,0.6,-0.9,-1,0.1,-0.4,0.6,1.6,2.6,3.6,4.6,5.6,6.6,7.6,8.6,9.6,10.6,11.6,12.6,13.6,14.6,15.6,16.6],"benchmark":[73,60.7,122.5,105.5,72.4,1.5,77.8,175.2,145.2,105.8,128.3,132.8,87.7,46.9,-2.2,-27.9,-8.1,7.1,-26.1,-23.6,-34,-59.6,-64.6,-61.3,-68.9,-74.9,-78.9,-71.5,-71.1,-78.3,-68.3,-82.3,-99.2,-91.7,-106.2,-103.4,-99.1,-100.3,-95.2,-80.4,-81.7,-81.4,-75.8,-84.9,-61.7,-59,-59.9,-52.4,-44.9,-36.7,-30.8,-14.3,-8.3,-24.5,-29.1,-21.1,-16.8,-17.9,-29,-22.2,-40.9,-42.9,-40.7,-37.6,-35.3,-27.6,-14.6,-16.1,-20.5,-22.4,-21.6,-27.9,-24.8,-34.5,-27,-27.6,-26.5,-24.8,-29.6,-31.3,-27.2,-26.4,-25.1,-25.7,-20.2,-22.5,-16.9,-17.7,-15.6,-24.8,-28.6,-31.4,-34.2,-30.6,-31.4,-31.8,-40.9,-42.2,-46,-39.8,-34.5,-29.6,-21.1,-17.8,-17.4,-21.1,-17.2,-12.4,-7.5,-2,1.2,-1.5,-3.7,-1.7,2.6,4,4,8.2,8.7,5.4,3.9,6.1,10.6,11.6,11.5,8.1,4.8,3.9,1.8,4.7,7.8,6.8,5.9,3.8,4.4,1,5.7,6,2.5,3.9,-1.4,-2,-0.9,-0.1,3.6,4.2,1.9,5,3.7,5.4,2.5,2.4,1.9,2.9,3.7,2.6,1.4,2.5,3,0.8,2.9,2.7,-3.4,-5.4,-6.4,-3.1,-2.2,-2.7,-2.7,0.3,1.6,-0.2,4.6,2.9,0.3,-1.7,4.2,2,2.7,5.4,8,9.1,13.5,10.6,12.6,11.6,10.1,11.2,12.5,14.6,16.9,13.8,11.6,11.3,9.2,8.8,12.1,12.3,13.9,12.4,13.1,13.5,17,20.3,19.2,19.6,20.7,20.1,21.3,19.2,21.2,21.8,20.9,22.8,25.5,26.9,22.7,22.9,25.2,25,25.2,24.2,24.4,25.4,24,22,23.3,23.4,23.3,21,23.6,24.3,23.5,25.4,27,24.6,25.1,26.1,26.1,26,25.1,25.8,28.1,25.4,24.3,23.7,24,22.1,20.4,21.6,21.4,21.9,22,21.5,20.5,20.3,24,26.8,25.8,25.3,26.2,26.2,26,25,24.2,25,25.1,27.4,26.6,26.6,26.4,25.9,25.8,26.6,27.5,27.5,26.5,27.8,27.9,25.9,26.1,23.6,26.3,28.7,29.4,27.4,29.6,29.6,29.3,28.7,28.8,29.3,30.3,32.2,33,31.8,32.7,33.4,34,32.3,32,31.9,32.7,32.2,34.8,35.8,33,28.6,29.1,29.8,25.2,23.5,24.2,24.1,26.3,27.3,26.2,24.3,27.3,27.9,28.8,29.4,30.9,31.9,33.9,32,32.6,32.8,33.6,33.2,33.3,36.7,40.8,39.8,41.1,41.7,44.4,47.2,44.9,43.1,41.7,41.2,39.7,42.8,39.7,38.4,38.1,36.7,35.8,36.4,39.1,36.3,37,41.9,41.6,41,39.2,38.2,40.5,38.8,39.8,40.8,41.8,42.8,43.8,44.8,45.8,46.8,47.8,48.8,49.8,50.8,51.8,52.8,53.8,54.8,55.8]}};
+</script>
+
+<script>
+  window.calendarData = {"dailyData":{"2025":{"1":{"1":{"profit":0.2,"amount":106},"2":{"profit":0.1,"amount":61},"3":{"profit":0.7,"amount":337},"4":{"profit":0.1,"amount":75},"5":{"profit":-0.2,"amount":-82},"6":{"profit":-1,"amount":-484},"7":{"profit":1.5,"amount":733},"8":{"profit":2.3,"amount":1174},"9":{"profit":-0.3,"amount":-130},"10":{"profit":-0.7,"amount":-340},"11":{"profit":1,"amount":483},"12":{"profit":0.5,"amount":250},"13":{"profit":-1.2,"amount":-621},"14":{"profit":-1.3,"amount":-662},"15":{"profit":-1.9,"amount":-944},"16":{"profit":-1.1,"amount":-567},"17":{"profit":0.8,"amount":424},"18":{"profit":0.7,"amount":362},"19":{"profit":-1.7,"amount":-854},"20":{"profit":0.1,"amount":34},"21":{"profit":-0.7,"amount":-331},"22":{"profit":-1.6,"amount":-820},"23":{"profit":-0.5,"amount":-236},"24":{"profit":0,"amount":19},"25":{"profit":-0.7,"amount":-346},"26":{"profit":-0.6,"amount":-309},"27":{"profit":-0.5,"amount":-248},"28":{"profit":0.3,"amount":174},"29":{"profit":-0.2,"amount":-79},"30":{"profit":-0.8,"amount":-395},"31":{"profit":0.6,"amount":317}},"2":{"1":{"profit":-1.4,"amount":-704},"2":{"profit":-1.8,"amount":-877},"3":{"profit":0.4,"amount":212},"4":{"profit":-1.6,"amount":-820},"5":{"profit":0,"amount":-9},"6":{"profit":0.2,"amount":77},"7":{"profit":-0.4,"amount":-200},"8":{"profit":0.3,"amount":139},"9":{"profit":1.4,"amount":678},"10":{"profit":-0.4,"amount":-183},"11":{"profit":-0.2,"amount":-93},"12":{"profit":0.4,"amount":215},"13":{"profit":-1.3,"amount":-649},"14":{"profit":2.6,"amount":1311},"15":{"profit":0.2,"amount":86},"16":{"profit":-0.3,"amount":-139},"17":{"profit":0.8,"amount":410},"18":{"profit":0.9,"amount":432},"19":{"profit":1,"amount":499},"20":{"profit":0.7,"amount":364},"21":{"profit":2.3,"amount":1136},"22":{"profit":0.8,"amount":413},"23":{"profit":-2.4,"amount":-1207},"24":{"profit":-0.8,"amount":-379},"25":{"profit":1.1,"amount":574},"26":{"profit":0.6,"amount":308},"27":{"profit":-0.2,"amount":-117},"28":{"profit":-1.8,"amount":-916}},"3":{"1":{"profit":1,"amount":517},"2":{"profit":-3.2,"amount":-1594},"3":{"profit":-0.5,"amount":-226},"4":{"profit":0.3,"amount":136},"5":{"profit":0.4,"amount":213},"6":{"profit":0.3,"amount":154},"7":{"profit":1.3,"amount":647},"8":{"profit":2.3,"amount":1157},"9":{"profit":-0.3,"amount":-163},"10":{"profit":-0.9,"amount":-440},"11":{"profit":-0.4,"amount":-204},"12":{"profit":0.1,"amount":47},"13":{"profit":-1.3,"amount":-648},"14":{"profit":0.5,"amount":265},"15":{"profit":-2,"amount":-1018},"16":{"profit":1.5,"amount":731},"17":{"profit":-0.2,"amount":-107},"18":{"profit":0.2,"amount":78},"19":{"profit":0.3,"amount":145},"20":{"profit":-1.1,"amount":-545},"21":{"profit":-0.5,"amount":-228},"22":{"profit":0.8,"amount":409},"23":{"profit":0.1,"amount":55},"24":{"profit":0.2,"amount":105},"25":{"profit":-0.2,"amount":-100},"26":{"profit":1.2,"amount":609},"27":{"profit":-0.6,"amount":-296},"28":{"profit":1.3,"amount":628},"29":{"profit":-0.2,"amount":-113},"30":{"profit":0.5,"amount":233},"31":{"profit":-2.3,"amount":-1162}},"4":{"1":{"profit":-1,"amount":-507},"2":{"profit":-0.8,"amount":-394},"3":{"profit":-0.8,"amount":-401},"4":{"profit":0.8,"amount":421},"5":{"profit":-0.3,"amount":-149},"6":{"profit":-0.2,"amount":-100},"7":{"profit":-2.5,"amount":-1242},"8":{"profit":-0.5,"amount":-231},"9":{"profit":-1.1,"amount":-571},"10":{"profit":1.6,"amount":779},"11":{"profit":1.4,"amount":678},"12":{"profit":1.3,"amount":644},"13":{"profit":2.3,"amount":1152},"14":{"profit":0.9,"amount":449},"15":{"profit":0.1,"amount":30},"16":{"profit":-1.1,"amount":-561},"17":{"profit":1.1,"amount":541},"18":{"profit":1.4,"amount":683},"19":{"profit":1.4,"amount":722},"20":{"profit":1.6,"amount":822},"21":{"profit":1,"amount":483},"22":{"profit":-0.8,"amount":-415},"23":{"profit":-0.7,"amount":-345},"24":{"profit":0.6,"amount":301},"25":{"profit":1.4,"amount":684},"26":{"profit":0.4,"amount":219},"27":{"profit":0,"amount":4},"28":{"profit":1.4,"amount":681},"29":{"profit":0.2,"amount":102},"30":{"profit":-1.1,"amount":-538}},"5":{"1":{"profit":-0.5,"amount":-240},"2":{"profit":0.8,"amount":379},"3":{"profit":1.5,"amount":757},"4":{"profit":0.4,"amount":197},"5":{"profit":0,"amount":-6},"6":{"profit":-1.1,"amount":-572},"7":{"profit":-1.1,"amount":-564},"8":{"profit":-0.3,"amount":-144},"9":{"profit":-0.8,"amount":-375},"10":{"profit":1.1,"amount":526},"11":{"profit":1.1,"amount":560},"12":{"profit":-0.3,"amount":-167},"13":{"profit":-0.3,"amount":-159},"14":{"profit":-0.8,"amount":-381},"15":{"profit":0.2,"amount":122},"16":{"profit":-1.3,"amount":-628},"17":{"profit":1.8,"amount":880},"18":{"profit":0.1,"amount":63},"19":{"profit":-1.3,"amount":-659},"20":{"profit":0.6,"amount":277},"21":{"profit":-2,"amount":-1021},"22":{"profit":-0.2,"amount":-114},"23":{"profit":0.4,"amount":219},"24":{"profit":0.3,"amount":155},"25":{"profit":1.5,"amount":736},"26":{"profit":0.2,"amount":108},"27":{"profit":-0.9,"amount":-440},"28":{"profit":1.3,"amount":627},"29":{"profit":-0.5,"amount":-273},"30":{"profit":0.7,"amount":361},"31":{"profit":-1.2,"amount":-579}},"6":{"1":{"profit":0,"amount":-19},"2":{"profit":-0.2,"amount":-108},"3":{"profit":0.4,"amount":221},"4":{"profit":0.3,"amount":154},"5":{"profit":-0.4,"amount":-210},"6":{"profit":-0.6,"amount":-275},"7":{"profit":0.5,"amount":250},"8":{"profit":0.2,"amount":113},"9":{"profit":-1,"amount":-480},"10":{"profit":0.9,"amount":470},"11":{"profit":-0.1,"amount":-42},"12":{"profit":-2.7,"amount":-1358},"13":{"profit":-0.9,"amount":-467},"14":{"profit":-0.4,"amount":-215},"15":{"profit":1.5,"amount":741},"16":{"profit":0.4,"amount":187},"17":{"profit":-0.2,"amount":-100},"18":{"profit":0,"amount":-14},"19":{"profit":1.4,"amount":704},"20":{"profit":0.6,"amount":307},"21":{"profit":-0.9,"amount":-443},"22":{"profit":2.3,"amount":1140},"23":{"profit":-0.8,"amount":-404},"24":{"profit":-1.2,"amount":-604},"25":{"profit":-1,"amount":-484},"26":{"profit":2.8,"amount":1415},"27":{"profit":-1,"amount":-514},"28":{"profit":0.4,"amount":180},"29":{"profit":1.3,"amount":665},"30":{"profit":1.3,"amount":642}},"7":{"1":{"profit":0.6,"amount":290},"2":{"profit":2.2,"amount":1117},"3":{"profit":-1.5,"amount":-725},"4":{"profit":1.1,"amount":528},"5":{"profit":-0.5,"amount":-239},"6":{"profit":-0.7,"amount":-365},"7":{"profit":0.6,"amount":296},"8":{"profit":0.7,"amount":349},"9":{"profit":1.2,"amount":576},"10":{"profit":1.2,"amount":606},"11":{"profit":-1.6,"amount":-779},"12":{"profit":-1.1,"amount":-558},"13":{"profit":-0.1,"amount":-62},"14":{"profit":-1.1,"amount":-561},"15":{"profit":-0.2,"amount":-87},"16":{"profit":1.8,"amount":888},"17":{"profit":0.1,"amount":72},"18":{"profit":0.9,"amount":458},"19":{"profit":-0.8,"amount":-395},"20":{"profit":0.4,"amount":220},"21":{"profit":0.2,"amount":119},"22":{"profit":2,"amount":986},"23":{"profit":1.9,"amount":957},"24":{"profit":-0.6,"amount":-283},"25":{"profit":0.3,"amount":138},"26":{"profit":0.7,"amount":351},"27":{"profit":-0.3,"amount":-157},"28":{"profit":0.8,"amount":384},"29":{"profit":-1.2,"amount":-591},"30":{"profit":1.2,"amount":623},"31":{"profit":0.4,"amount":188}},"8":{"1":{"profit":-0.4,"amount":-212},"2":{"profit":1.1,"amount":557},"3":{"profit":1.7,"amount":843},"4":{"profit":0.9,"amount":450},"5":{"profit":-2.4,"amount":-1209},"6":{"profit":0.2,"amount":78},"7":{"profit":1.5,"amount":728},"8":{"profit":0,"amount":-14},"9":{"profit":0.2,"amount":85},"10":{"profit":-0.6,"amount":-275},"11":{"profit":0.2,"amount":91},"12":{"profit":0.7,"amount":333},"13":{"profit":-0.8,"amount":-395},"14":{"profit":-1.1,"amount":-573},"15":{"profit":0.9,"amount":436},"16":{"profit":0.1,"amount":63},"17":{"profit":0,"amount":7},"18":{"profit":-1.4,"amount":-706},"19":{"profit":1.7,"amount":850},"20":{"profit":0.5,"amount":246},"21":{"profit":-0.4,"amount":-195},"22":{"profit":1.2,"amount":615},"23":{"profit":1.2,"amount":578},"24":{"profit":-1.5,"amount":-754},"25":{"profit":0.4,"amount":186},"26":{"profit":0.8,"amount":382},"27":{"profit":0.1,"amount":40},"28":{"profit":0,"amount":-11},"29":{"profit":-0.5,"amount":-272},"30":{"profit":0.5,"amount":272},"31":{"profit":1.6,"amount":803}},"9":{"1":{"profit":-1.7,"amount":-857},"2":{"profit":-0.7,"amount":-348},"3":{"profit":-0.3,"amount":-166},"4":{"profit":0.3,"amount":143},"5":{"profit":-1.2,"amount":-616},"6":{"profit":-1.1,"amount":-550},"7":{"profit":0.9,"amount":453},"8":{"profit":-0.1,"amount":-50},"9":{"profit":0.4,"amount":197},"10":{"profit":0.2,"amount":82},"11":{"profit":-0.3,"amount":-158},"12":{"profit":-0.7,"amount":-337},"13":{"profit":-0.1,"amount":-33},"14":{"profit":2.7,"amount":1328},"15":{"profit":2.1,"amount":1035},"16":{"profit":-0.6,"amount":-307},"17":{"profit":-0.3,"amount":-147},"18":{"profit":0.7,"amount":354},"19":{"profit":0.1,"amount":29},"20":{"profit":-0.1,"amount":-47},"21":{"profit":-0.7,"amount":-328},"22":{"profit":-0.5,"amount":-248},"23":{"profit":0.6,"amount":312},"24":{"profit":0.2,"amount":78},"25":{"profit":1.7,"amount":874},"26":{"profit":-0.5,"amount":-257},"27":{"profit":0.1,"amount":44},"28":{"profit":0,"amount":-14},"29":{"profit":-0.3,"amount":-167},"30":{"profit":0,"amount":-19}},"10":{"1":{"profit":0.7,"amount":346},"2":{"profit":0.8,"amount":394},"3":{"profit":0,"amount":22},"4":{"profit":-0.7,"amount":-326},"5":{"profit":1,"amount":519},"6":{"profit":0.2,"amount":85},"7":{"profit":-1.4,"amount":-724},"8":{"profit":0.2,"amount":85},"9":{"profit":-1.9,"amount":-928},"10":{"profit":2.2,"amount":1095},"11":{"profit":2,"amount":978},"12":{"profit":0.6,"amount":307},"13":{"profit":-1.5,"amount":-746},"14":{"profit":1.8,"amount":909},"15":{"profit":0,"amount":15},"16":{"profit":-0.1,"amount":-54},"17":{"profit":-0.5,"amount":-227},"18":{"profit":0.2,"amount":80},"19":{"profit":0.5,"amount":273},"20":{"profit":0.9,"amount":429},"21":{"profit":1.6,"amount":811},"22":{"profit":0.7,"amount":342},"23":{"profit":-0.9,"amount":-442},"24":{"profit":0.9,"amount":440},"25":{"profit":0.7,"amount":338},"26":{"profit":0.6,"amount":282},"27":{"profit":-1.3,"amount":-650},"28":{"profit":-0.5,"amount":-273},"29":{"profit":0,"amount":15},"30":{"profit":1.4,"amount":685},"31":{"profit":-0.3,"amount":-154}},"11":{"1":{"profit":1.9,"amount":933},"2":{"profit":-0.2,"amount":-102},"3":{"profit":-0.8,"amount":-383},"4":{"profit":-1.3,"amount":-669},"5":{"profit":0.1,"amount":61},"6":{"profit":-0.1,"amount":-47},"7":{"profit":-2.8,"amount":-1414},"8":{"profit":-0.9,"amount":-452},"9":{"profit":-0.6,"amount":-319},"10":{"profit":-1.4,"amount":-708},"11":{"profit":-0.1,"amount":-55},"12":{"profit":-0.3,"amount":-154},"13":{"profit":-0.1,"amount":-50},"14":{"profit":-0.8,"amount":-380},"15":{"profit":0.7,"amount":365},"16":{"profit":0.6,"amount":277},"17":{"profit":0.1,"amount":33},"18":{"profit":-1.1,"amount":-528},"19":{"profit":0.7,"amount":334},"20":{"profit":0.8,"amount":420},"21":{"profit":1,"amount":491},"22":{"profit":-2.2,"amount":-1097},"23":{"profit":0,"amount":-8},"24":{"profit":0.5,"amount":253},"25":{"profit":0.4,"amount":182},"26":{"profit":-1.1,"amount":-568},"27":{"profit":0.7,"amount":340},"28":{"profit":1.4,"amount":713},"29":{"profit":1.5,"amount":747},"30":{"profit":-0.4,"amount":-176}},"12":{"1":{"profit":-0.5,"amount":-262},"2":{"profit":0.5,"amount":251},"3":{"profit":2.4,"amount":1219},"4":{"profit":1.9,"amount":949},"5":{"profit":-1.6,"amount":-803},"6":{"profit":-0.1,"amount":-41},"7":{"profit":-1.5,"amount":-730},"8":{"profit":-0.6,"amount":-318},"9":{"profit":-0.9,"amount":-471},"10":{"profit":1.3,"amount":645},"11":{"profit":0,"amount":2},"12":{"profit":-0.8,"amount":-392},"13":{"profit":-0.6,"amount":-293},"14":{"profit":-0.3,"amount":-134},"15":{"profit":0.1,"amount":42},"16":{"profit":1.5,"amount":726},"17":{"profit":2.9,"amount":1438},"18":{"profit":0,"amount":-5},"19":{"profit":1.4,"amount":688},"20":{"profit":1.6,"amount":783},"21":{"profit":-1,"amount":-484},"22":{"profit":0.6,"amount":322},"23":{"profit":-0.9,"amount":-431},"24":{"profit":-1,"amount":-476},"25":{"profit":0.1,"amount":66},"26":{"profit":-0.4,"amount":-202},"27":{"profit":0.6,"amount":-201},"28":{"profit":1.6,"amount":-200},"29":{"profit":2.6,"amount":-199},"30":{"profit":3.6,"amount":-198},"31":{"profit":4.6,"amount":-197}}},"2026":{"1":{"1":{"profit":5.6,"amount":-196},"2":{"profit":6.6,"amount":-195},"3":{"profit":7.6,"amount":-194},"4":{"profit":8.6,"amount":-193},"5":{"profit":9.6,"amount":-192},"6":{"profit":10.6,"amount":-191},"7":{"profit":11.6,"amount":-190},"8":{"profit":12.6,"amount":-189},"9":{"profit":13.6,"amount":-188},"10":{"profit":14.6,"amount":-187},"11":{"profit":15.6,"amount":-186},"12":{"profit":16.6,"amount":-185}}}},"monthlyData":{"2025":[{"month":1,"profit":10,"amount":-270},{"month":2,"profit":38,"amount":-242},{"month":3,"profit":69,"amount":-211},{"month":4,"profit":99,"amount":-181},{"month":5,"profit":130,"amount":-150},{"month":6,"profit":160,"amount":-120},{"month":7,"profit":191,"amount":-89},{"month":8,"profit":222,"amount":-58},{"month":9,"profit":252,"amount":-28},{"month":10,"profit":283,"amount":3},{"month":11,"profit":313,"amount":33},{"month":12,"profit":344,"amount":64}],"2026":[{"month":1,"profit":356,"amount":76}]},"yearlyData":[{"year":2025,"profit":32.76,"amount":13883},{"year":2026,"profit":44.76,"amount":13895}]};
+</script>
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+    <div class="main-content-footer">
+      <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+                <div class="text-center">
+                    &copy;
+                    
+                        <span>
+                            2025
+                        </span>
+                        -
+                        
+                            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a
+                                        href="/">
+                                        Prism AI
+                                    </a>
+                                    
+                </div>
+                
+                        <div
+                            class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+                            <span class="lg:block text-sm">Powered by <a class="text-base" target="_blank">Prism AI
+                                    adapt to Hexo</a></span>
+                            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base"
+                                        target="_blank">adapt to Redefine</a></span>
+                        </div>
+                        
+                                
+                                        
+                                                
+
+    </div>
+</footer>
+    </div>
+  </div>
+
+  <div class="right-side-tools-container">
+    <div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+  </div>
+
+  <div class="image-viewer-container">
+	<img src="">
+</div>
+
+  
+</main>
+
+
+<!-- <script src="/js/build/strategy.js" data-swup-reload-script></script>  -->
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+
+<script data-swup-ignore-script>
+  window.swup = window.swup || new Swup({
+    containers: ["#swup"],
+    plugins: [
+      new SwupProgressPlugin(),
+      new SwupScrollPlugin({ offset: 80 }),
+      new SwupSlideTheme({ mainElement: ".main-content-body" }),
+      new SwupPreloadPlugin(),
+      new SwupScriptsPlugin({
+        head: false,
+        body: false,
+        optin: true   // ★ 关键：只有带 data-swup-reload-script 的 script 才会重新执行
+      })
+    ]
+  });
+</script>
+
+
+
+
+  
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/build/layouts/toc.js" type="module"></script>
+
+<script src="/js/build/plugins/tabs.js" type="module"></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js"></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module"></script>
+
+
+
+
+
+
+<!-- 全站加载 strategy.js（不重载） -->
+
+<script src="/js/build/strategy.js"></script>
+
+
+
+
+  
+</body>
+</html>
+
+
+
